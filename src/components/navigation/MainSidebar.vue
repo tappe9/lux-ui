@@ -11,10 +11,6 @@ import { Icon } from "@iconify/vue";
 const customizeTheme = useCustomizeThemeStore();
 const navigation = ref(configs.navigation);
 
-const openGithubSite = () => {
-  window.open("https://github.com/yangjiakai", "_blank");
-};
-
 onMounted(() => {
   scrollToBottom();
 });
@@ -58,7 +54,7 @@ const scrollToBottom = () => {
         /> -->
         <h1 class="logo-text h-full">
           <Icon class="mr-2" width="40" icon="solar:plain-bold-duotone" />
-          <span>Lux-UI</span>
+          <span>Gsettings</span>
         </h1>
       </v-card>
     </template>
@@ -69,40 +65,6 @@ const scrollToBottom = () => {
     <div class="main-menu">
       <main-menu :menu="navigation.menu"></main-menu>
     </div>
-    <!-- ---------------------------------------------- -->
-    <!---Bottom Area -->
-    <!-- ---------------------------------------------- -->
-    <template v-if="!customizeTheme.miniSidebar" v-slot:append>
-      <v-card height="225" class="pa-3" variant="text">
-        <v-card
-          class="d-flex flex-column pa-2 gradient-card text-white"
-          height="200 "
-        >
-          <v-card-title>
-            <v-btn class="mr-2" size="40" color="white" icon>
-              <Icon width="30" icon="line-md:github-loop" />
-            </v-btn>
-            Yang J.K.
-          </v-card-title>
-          <v-card-subtitle> </v-card-subtitle>
-          <v-card-text>
-            <div><b>Github:</b></div>
-            <div>github.com/yangjiakai</div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn
-              block
-              prepend-icon="mdi-thumb-up-outline"
-              variant="outlined"
-              @click="openGithubSite"
-              color="white"
-            >
-              Star-Me
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-card>
-    </template>
   </v-navigation-drawer>
 </template>
 
