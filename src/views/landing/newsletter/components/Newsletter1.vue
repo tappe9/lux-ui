@@ -8,11 +8,12 @@ const deviceName = ref("");
 const price = ref("");
 const thumbnailUrl = ref("");
 const loading = ref(false);
+const message = ref("");
 
 const fetchData = async () => {
   loading.value = true;
   if (!amazonUrl.value) {
-    console.error("URL is empty");
+    message.value = "Please enter an Amazon URL";
     loading.value = false;
     return;
   }
@@ -29,8 +30,44 @@ const fetchData = async () => {
     thumbnailUrl.value = data.thumbnailUrl;
   } catch (error) {
     console.error("Error fetching data:", error);
+    message.value = "Error fetching data";
   }
   loading.value = false;
+};
+
+const saveData = async () => {
+  if (
+    !manufacturer.value ||
+    !deviceName.value ||
+    !price.value ||
+    !thumbnailUrl.value
+  ) {
+    message.value = "Please fill in all fields";
+    return;
+  }
+  loading.value = true;
+  try {
+    const response = await axios.post("http://localhost:5000/api/save-device", {
+      amazonUrl: amazonUrl.value,
+      manufacturer: manufacturer.value,
+      deviceName: deviceName.value,
+      price: price.value,
+      thumbnailUrl: thumbnailUrl.value,
+    });
+    console.log("Data saved:", response.data);
+    message.value = "Data saved successfully";
+  } catch (error) {
+    console.error("Error saving data:", error);
+    message.value = "Error saving data";
+  }
+  loading.value = false;
+  clearValues();
+};
+const clearValues = () => {
+  manufacturer.value = "";
+  deviceName.value = "";
+  price.value = "";
+  thumbnailUrl.value = "";
 };
 </script>
 
@@ -76,7 +113,7 @@ const fetchData = async () => {
               color="primary font-weight-bold"
               @click="fetchData"
               :loading="loading"
-              >Subscribe</v-btn
+              >Scraping</v-btn
             >
           </v-col>
         </v-row>
@@ -121,7 +158,30 @@ const fetchData = async () => {
               max-width="200"
             ></v-img>
           </v-col>
+          <v-col cols="12">
+            <v-btn
+              size="x-large"
+              block
+              color="primary font-weight-bold"
+              @click="saveData"
+              :loading="loading"
+              >DBへ登録</v-btn
+            >
+          </v-col>
         </v-row>
+        <br />
+        <br />
+        <template v-if="message">
+          <v-alert
+            v-if="message"
+            :value="true"
+            type="info"
+            dismissible
+            elevation="2"
+          >
+            {{ message }}
+          </v-alert>
+        </template>
       </v-container>
     </v-sheet>
   </v-sheet>
