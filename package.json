@@ -23,6 +23,7 @@
     "axios": "^1.6.8",
     "clipboard": "^2.0.11",
     "echarts": "^5.5.0",
+    "firebase": "^10.12.2",
     "flag-icons": "^7.2.1",
     "focus-trap": "^7.4.0",
     "happy-dom": "^14.3.10",

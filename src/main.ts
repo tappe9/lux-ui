@@ -21,6 +21,7 @@ import router from "./router";
 import i18n from "./plugins/i18n";
 import Vue3Lottie from "vue3-lottie";
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
+import { auth } from './firebaseConfig';
 
 
 const pinia = createPinia();
@@ -38,4 +39,15 @@ app.use(Vue3Lottie, { name: "LottieAnimation" });
 app.use(autoAnimatePlugin);
 
 app.use(vuetify);
+
+auth.onAuthStateChanged((user) => {
+    if (user) {
+      // ユーザーがログインしている場合の処理
+      console.log('User logged in:', user);
+    } else {
+      // ユーザーがログアウトしている場合の処理
+      console.log('User not logged in');
+    }
+  });
+
 app.mount("#app");
