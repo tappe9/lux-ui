@@ -131,6 +131,33 @@ yarn install
 yarn dev
 ```
 
+## 👻Docker it!
+
+1. Build the development environment image:
+
+   ```
+   docker-compose build dev
+   ```
+
+2. Start the development environment:
+
+   ```
+   docker-compose up dev
+   ```
+
+3. Build the production environment image:
+
+   ```
+   docker-compose build app
+   ```
+
+4. Start the production environment:
+   ```
+   docker-compose up app
+   ```
+
+这应该能解决实时更新的问题。如果您还有任何疑问或遇到其他问题，请随时告诉我。
+
 ### 🔑Set ApiKey
 
 Find the `.env.template` file in the root directory, remove the `.template` suffix, and replace` VITE_OPENAI_API_KEY`, `VITE_UNSPLASH_ACCESS_KEY`, and `VITE_GITHUB_CLIENT_ID`, and `VITE_TTS_KEY` and `VITE_TTS_REGION` with your own keys.

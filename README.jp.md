@@ -131,6 +131,31 @@ yarn install
 yarn dev
 ```
 
+## 👻Docker it!
+
+1. 开发环境构建镜像：
+
+   ```
+   docker-compose build dev
+   ```
+
+2. 启动开发环境：
+
+   ```
+   docker-compose up dev
+   ```
+
+3. 生产环境构建镜像：
+
+   ```
+   docker-compose build app
+   ```
+
+4. 启动生产环境：
+   ```
+   docker-compose up app
+   ```
+
 ### 🔑Set ApiKey
 
 Find the `.env.template` file in the root directory, remove the `.template` suffix, and replace` VITE_OPENAI_API_KEY`, `VITE_UNSPLASH_ACCESS_KEY`, and `VITE_GITHUB_CLIENT_ID`, and `VITE_TTS_KEY` and `VITE_TTS_REGION` with your own keys.
