@@ -23,10 +23,6 @@ export default defineConfig({
     }),
   ],
   define: { "process.env": {} },
-  test: {
-    globals: true,
-    environment: "happy-dom",
-  },
   resolve: {
     alias: {
       "~": fileURLToPath(new URL("./", import.meta.url)),
@@ -36,7 +32,11 @@ export default defineConfig({
     extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
   server: {
-    port: 4399,
+    host: "0.0.0.0",
+    port: 8080,
+    watch: {
+      usePolling: true,
+    },
     proxy: {
       "/sdApi": {
         target: "http://me.yunrobot.cn:7860",
@@ -51,5 +51,4 @@ export default defineConfig({
       css: { charset: false },
     },
   },
-
 });
